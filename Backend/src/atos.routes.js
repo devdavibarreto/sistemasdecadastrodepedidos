@@ -30,5 +30,22 @@ atos.get("/Pedidos", async (request,response)=>{
     return response.status(200).json(pedidosemaberto)
 })
 
+atos.put("/atualizarpedido", async(request,response)=>{
+    const { id,pedidos,descricao, } = request.body
+
+    const atosBurguer = await prisma.atosBurguer.update({
+        where:{
+            id,
+        },
+        data:{
+            pedidos,
+            descricao,
+            
+        },
+    });
+    return response.status(200).json(atosBurguer)
+
+    // finalizar
+})
 
 module.exports = atos
