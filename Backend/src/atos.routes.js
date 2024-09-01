@@ -1,27 +1,33 @@
 const express = require("express");
+const {PrismaClient} = require("@prisma/client")
 
-const pedido = [{pedidos: "", descricao: "", ordem: Number}]
+const prisma = new  PrismaClient()
+
+const allpedido = [{pedidos: "", descricao: "", ordem: Number}]
 let ordem = 0
 
 const atos = express.Router();
 
-atos.post("/CadastroDePedidos", (request,response) => {
- const {pedidos,descricao} = request.body;
-let novoPedido = {pedidos,descricao}
+atos.post("/CadastroDePedidos", async (request,response) => {
 
+ const {pedidos,descricao} = request.body;
 
 ordem++
 
 
- novoPedido = {pedidos,descricao,ordem}
-
- pedido.push(novoPedido)
-
-return response.status(201).json(pedido)
+ const atosBurguer = await prisma.atosBurguer.create({
+    data:{
+        pedidos,
+        descricao,
+        ordem,
+    }
+ })
+return response.status(201).json(atosBurguer)
 })
 
-atos.get("/Pedidos", (request,response)=>{
-    return response.status(200).json(pedido)
+atos.get("/Pedidos", async (request,response)=>{
+    const pedidosemaberto = await prisma.atosBurguer.findMany()
+    return response.status(200).json(pedidosemaberto)
 })
 
 
