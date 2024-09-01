@@ -1,8 +1,9 @@
 const express = require("express");
-
+const  atos  = require("./atos.routes")
 const app = express();
 
 app.use(express.json());
+app.use(atos)
 
 app.get('/teste',(req,res)=>{
 
