@@ -33,6 +33,16 @@ atos.get("/Pedidos", async (request,response)=>{
 atos.put("/atualizarpedido", async(request,response)=>{
     const { id,pedidos,descricao, } = request.body
 
+    if(!id ){
+        return response.status(400).json("ID É OBRIGATORIO")
+    }
+
+    const idInBd = await prisma.atosBurguer.findUnique({where: {id}})
+
+    if( !idInBd){
+        return response.status(404).json("Esse id não existe")
+    }
+
     const atosBurguer = await prisma.atosBurguer.update({
         where:{
             id,
@@ -45,7 +55,29 @@ atos.put("/atualizarpedido", async(request,response)=>{
     });
     return response.status(200).json(atosBurguer)
 
-    // finalizar
+
 })
+
+atos.delete("/finalizar/:id", async( request,response)=>{
+const {id} = request.params;
+
+
+const intId = parseInt(id);
+
+
+if(!intId ){
+    return response.status(400).json("ID É OBRIGATORIO")
+}
+
+    const idInBd = await prisma.atosBurguer.findUnique({where: {id: intId}})
+
+if( !idInBd){
+    return response.status(404).json("Esse id não existe")
+}
+
+await prisma.atosBurguer.delete({where:{id: intId}})
+
+return response.status(200).send()
+});
 
 module.exports = atos
