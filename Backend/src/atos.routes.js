@@ -28,7 +28,7 @@ return response.status(201).json(atosBurguer)
 
 atos.get("/atos", async (request,response)=>{
     const pedidosemaberto = await prisma.atosBurguer.findMany()
-    return response.status(200).json(pedidosemaberto)
+    return response.status(200).json(pedidosemaberto);
 })
 
 atos.put("/atos", async(request,response)=>{

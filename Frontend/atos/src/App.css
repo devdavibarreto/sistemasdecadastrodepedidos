@@ -7,12 +7,13 @@ button {
 }
 
 .container {
-  background-color: #bd0505;
+  background-color: #030000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+ 
 }
 .atosPrincipal {
   background-color: rgb(230, 230, 230);
@@ -20,6 +21,7 @@ button {
  height: 500px;
   border-radius: 10px;
   overflow-y: scroll;
+  box-shadow: 10px 10px 10px -7px rgb(255, 0, 2);
 }
 
 .atosSegundos {
@@ -49,16 +51,18 @@ button {
   margin: 10px;
 }
 .header {
-  background-color: #a879e6;
-  width: 508px;
-  height: 60px;
-  box-shadow: 0px 0px 21px -7px rgba(0, 0, 0, 0.3);
+  background-color: #000000;
+  width: 500px;
+  height: 70px;
+  border: 15px;
+  box-shadow: 0px 0px 21px -7px rgba(255, 255, 255, 0.8);
   margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 0.8rem;
+  gap: 3rem;
 }
 .newPedidoRegister {
   border: none;
@@ -73,8 +77,21 @@ button {
 }
 .inputName {
   margin-top: 10px;
+ 
   text-align: center;
   border: none;
+  border-radius: 2rem;
+  height: 50px;
+  width: 200px;
+  box-shadow: 0px 0px 21px -7px rgba(0, 0, 0, 0.3);
+}
+
+.inputName1 {
+  margin-top: 10px;
+ 
+  text-align: center;
+  border: none;
+  border-radius: 2rem;
   height: 50px;
   width: 200px;
   box-shadow: 0px 0px 21px -7px rgba(0, 0, 0, 0.3);
@@ -82,3 +99,8 @@ button {
 input:focus {
   outline: none;
 }
+.logo{
+  width: 10rem;
+  height: 10rem;
+}
+

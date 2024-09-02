@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import {AiOutlineEdit,AiOutlineDelete} from "react-icons/ai";
 import axios from "axios"
-
-
+import logo from "../src/img/atoslogo.png"
 
 
 export default function App() {
@@ -21,7 +20,7 @@ export default function App() {
         <p>{atos.descricao}</p>
         <p>{atos.ordem}</p>
        <button>
-        <AiOutlineEdit size={20} color='red'></AiOutlineEdit>
+        <AiOutlineEdit onClick={()=> edicaopedido(atos)} size={20} color='red'></AiOutlineEdit>
         </button>
         <button>
         <AiOutlineDelete onClick={()=> deletarPedido(atos)} size={20} color='red'></AiOutlineDelete>
@@ -35,41 +34,74 @@ export default function App() {
     );
   };
 
+  
+
 async function handleNewPedido() {
-  const response =await axios.post("http://localhost:3523/atos", {
+  await axios.post("http://localhost:3523/atos", {
     pedidos: pedido,
     descricao:descricao
   })
   getPedidos()
+  setpedido("")
+  setdescricao("")
+}
+
+
+async function edicaopedido(atos) {
+  setpedidoselecionado(atos)
+  edicaopedido1(atos)
+  setpedido("")
+  setdescricao("")
 }
 
 async function getPedidos() {
   const response = await axios.get("http://localhost:3523/atos")
   setPedidos(response.data)
 }
+
+async function edicaopedido1(atos) {
+await axios.put("http://localhost:3523/atos", {
+  id: atos.id,
+  pedidos: pedido,
+  descricao:descricao
+})
+setpedidoselecionado()
+getPedidos()
+setpedido("")
+setdescricao("")
+}
+
+
 async function deletarPedido(atos) {
-  const response = await axios.delete(`http://localhost:3523/atos/${atos.id}`)
+  await axios.delete(`http://localhost:3523/atos/${atos.id}`)
   
   getPedidos()
+  
 }
 
 const [pedidos,setPedidos] = useState([])
 const [pedido,setpedido] = useState("")
 const [descricao,setdescricao] = useState("")
+const [pedidoselecionado,setpedidoselecionado] = useState();
+
+
 useEffect(()=>{
   getPedidos();
 },[])
 
+
   return (
     <div className="App">
       <header className="container">
+      <img className='logo' src={logo} alt="Dev Davi"/>
 <div className='header'>
+
   <input 
   value={pedido}
   onChange={(event)=>{
     setpedido(event.target.value)
   }}
-  className='inputName'></input>
+  className='inputName1'></input>
   <input
   value={descricao}
   onChange={(event)=>{
