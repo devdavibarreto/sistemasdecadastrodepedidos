@@ -9,7 +9,7 @@ let ordem = 0
 
 const atos = express.Router();
 
-atos.post("/CadastroDePedidos", async (request,response) => {
+atos.post("/atos", async (request,response) => {
 
  const {pedidos,descricao} = request.body;
 
@@ -26,12 +26,12 @@ ordem++
 return response.status(201).json(atosBurguer)
 })
 
-atos.get("/Pedidos", async (request,response)=>{
+atos.get("/atos", async (request,response)=>{
     const pedidosemaberto = await prisma.atosBurguer.findMany()
     return response.status(200).json(pedidosemaberto)
 })
 
-atos.put("/atualizarpedido", async(request,response)=>{
+atos.put("/atos", async(request,response)=>{
     const { id,pedidos,descricao, } = request.body
 
     if(!id ){
@@ -59,7 +59,7 @@ atos.put("/atualizarpedido", async(request,response)=>{
 
 })
 
-atos.delete("/finalizar/:id", async( request,response)=>{
+atos.delete("/atos/:id", async( request,response)=>{
 const {id} = request.params;
 
 

@@ -3,9 +3,6 @@ import './App.css';
 import {AiOutlineEdit,AiOutlineDelete} from "react-icons/ai";
 import axios from "axios"
 
-const arraypedidos =[{pedidos: "burgão", descricao: "burgão00000000000", ordem: 1},
-  {pedidos: "burgão", descricao: "burgão00000000000", ordem: 2}
-]
 
 const AtosPrincipal = ({atosBurguer})=>{
 
@@ -36,8 +33,8 @@ const AtosPrincipal = ({atosBurguer})=>{
 
 export default function App() {
 async function getPedidos() {
-  const response = await axios.get("https://localhost:3523")
-  console.log(response)
+  const response = await axios.get("http://localhost:3523/atos")
+  setPedidos(response.data)
 }
 
 const [pedidos,setPedidos] = useState([])
@@ -53,7 +50,7 @@ useEffect(()=>{
   <input className='inputName'></input>
   <button className='newPedidoRegister'>Registrar</button>
 </div>
-       <AtosPrincipal atosBurguer={arraypedidos}></AtosPrincipal>
+       <AtosPrincipal atosBurguer={pedidos}></AtosPrincipal>
      
       </header>
     </div>
