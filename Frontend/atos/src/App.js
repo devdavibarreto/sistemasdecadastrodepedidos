@@ -51,6 +51,7 @@ useEffect(()=>{
   <button className='newPedidoRegister'>Registrar</button>
 </div>
        <AtosPrincipal atosBurguer={pedidos}></AtosPrincipal>
+       
      
       </header>
     </div>
