@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import {AiOutlineEdit,AiOutlineDelete} from "react-icons/ai";
 
-function App() {
+const arraypedidos =[{pedidos: "burgão", descricao: "burgão00000000000", ordem: 1},
+  {pedidos: "burgão", descricao: "burgão00000000000", ordem: 2}
+]
+
+const AtosPrincipal = ({atosBurguer})=>{
+  return(
+<div className="atosPrincipal">
+{atosBurguer.map(atos =>{
+  return (
+    <div className="atosSegundos">
+      <p>{atos.pedidos}</p>
+      <p>{atos.descricao}</p>
+      <p>{atos.ordem}</p>
+     <button>
+      <AiOutlineEdit size={20} color='red'></AiOutlineEdit>
+      </button>
+      <button>
+      <AiOutlineDelete size={20} color='red'></AiOutlineDelete>
+      </button>
+       </div>
+  )
+})}
+
+
+</div>
+  );
+};
+
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="container">
+
+       <AtosPrincipal atosBurguer={arraypedidos}></AtosPrincipal>
+     
       </header>
     </div>
   );
 }
 
-export default App;
+
