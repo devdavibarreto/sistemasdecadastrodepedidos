@@ -9,7 +9,7 @@ app.use(atos);
 
 app.get('/teste',(req,res)=>{
 
-    return res.json("Deus é Fiel")
+    return res.json("Deus é Fiel ✝")
 });
 
 app.listen(3523,()=>{
