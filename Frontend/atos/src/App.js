@@ -18,7 +18,7 @@ export default function App() {
       <div className="atosSegundos">
         <p>{atos.pedidos}</p>
         <p>{atos.descricao}</p>
-        <p>{atos.ordem}</p>
+        <p>Ordem: {atos.ordem}</p>
        <button>
         <AiOutlineEdit onClick={()=> edicaopedido(atos)} size={20} color='red'></AiOutlineEdit>
         </button>
