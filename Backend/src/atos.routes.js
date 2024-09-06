@@ -63,7 +63,7 @@ atos.delete("/atos/:id", async( request,response)=>{
 const {id} = request.params;
 
 
-const intId = parseInt(id);
+const intId = parseInt(id)
 
 
 if(!intId ){
